@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hexel-viewer"
+version = "0.1.0"
+description = "Browser and CUDA-server viewers for Honeycomb Surfels"
+requires-python = ">=3.11"
+# Also requires the hexels package, installed from its source checkout. It is not declared here
+# because it is not on PyPI, and an unpinned name would let pip fetch an unrelated package.
+dependencies = ["numpy<2", "torch>=2.5.1", "pillow", "imageio-ffmpeg"]
+
+[tool.setuptools.packages.find]
+include = ["hexel_viewer*"]
+
+[tool.setuptools.package-data]
+hexel_viewer = ["web/*", "*.mjs"]

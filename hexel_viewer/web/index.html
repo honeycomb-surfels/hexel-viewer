@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#191615">
+  <title>Hexels Observatory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="viewport" tabindex="0" aria-label="Interactive Hexel reconstruction. Click to focus, then use WASD to move."></canvas>
+  <div id="comparison-layer" hidden><span id="comparison-left" class="comparison-label"></span><span id="comparison-right" class="comparison-label"></span><button id="comparison-handle" role="slider" aria-label="Comparison divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">↔</button></div>
+  <header>
+    <div class="brand"><span class="hex">⬡</span><div>HEXELS<span class="subtitle">RECONSTRUCTION OBSERVATORY</span></div></div>
+    <span id="backend" class="badge">DEVICE-LOCAL GPU</span>
+    <button id="toggle-panel" aria-expanded="true" aria-controls="panel">Controls</button>
+    <button id="help-toggle">Help · ?</button>
+  </header>
+  <aside id="panel">
+    <div class="section-label">SCENE</div>
+    <h1 id="scene-name">Inspect a reconstruction</h1>
+    <p id="intro">Open a pretrained Hexel bundle. Rendering stays on this device.</p>
+    <p id="model-details" class="note"></p>
+    <label class="load-button" id="file-label">Open .hexview<input id="file" type="file" accept=".hexview" hidden></label>
+    <div id="url-controls"><input id="model-url" type="url" placeholder="Or paste a bundle URL" aria-label="Bundle URL"><button id="load-url">Load URL</button></div>
+    <div class="section-label">INSPECT</div>
+    <label>Display<select id="mode"><option value="rgb">RGB appearance</option><option value="primitives">Primitive IDs</option><option value="wireframe">Colored boundaries</option><option value="depth">Depth</option><option value="normals">Normals</option><option value="opacity">Opacity</option></select></label>
+    <label class="compare-toggle"><input id="compare-enabled" type="checkbox">Compare two modes</label>
+    <div id="compare-controls" hidden>
+      <label>Right side<select id="compare-mode"><option value="rgb">RGB appearance</option><option value="primitives">Primitive IDs</option><option value="wireframe">Colored boundaries</option><option value="depth" selected>Depth</option><option value="normals">Normals</option><option value="opacity">Opacity</option></select></label>
+      <label>Divider<input id="comparison-position" type="range" min="0" max="100" value="50" aria-label="Comparison position"></label>
+      <p class="note">Display selects the left side. Both sides share one camera and model iteration. Drag the divider or use arrow keys.</p>
+    </div>
+    <p id="mode-note" class="note">Soft boundary, spatial color and trained view dependence.</p>
+    <label>Navigation<select id="navigation"><option value="fly">Fly / game controls</option><option value="orbit">Orbit scene</option></select></label>
+    <label>Saved view<select id="camera"><option value="-1">Free camera</option></select></label>
+    <div class="button-row"><button id="reset">Reset · R</button><button id="fullscreen">Fullscreen</button></div>
+    <div class="section-label">QUALITY</div>
+    <label>Render quality<select id="quality"><option value="full">Full model</option><option value="adaptive">Adaptive preview</option></select></label>
+    <label>Pixel scale <output id="scale-value">100%</output><input id="resolution" type="range" min="0.35" max="1" step="0.05" value="1"></label>
+    <label id="budget-label">Preview primitive budget<select id="budget"><option value="0">All primitives</option><option value="100000">100,000</option><option value="50000">50,000</option><option value="25000">25,000</option></select></label>
+    <label>Depth range<input id="depth-scale" type="number" min="0.2" step="0.2" value="10"></label>
+    <div class="button-row"><button id="screenshot">Save image</button><button id="save-camera">Save camera</button></div>
+    <label class="camera-file">Restore saved camera<input id="camera-file" type="file" accept=".json,application/json"></label>
+    <details open><summary>Movement &amp; touch</summary><p>Click the scene first. WASD move · mouse drag looks · F captures mouse · Esc releases · Q/E down/up · Shift boosts · wheel changes speed · O toggles orbit · R resets.</p><p>Touch: drag to look, pinch to dolly, two fingers to pan. Use the movement pad to walk. Movement has no collision constraints.</p></details>
+  </aside>
+  <div id="welcome"><span class="hex">⬡</span><h2>Interactive surface reconstruction</h2><p>Drop a .hexview bundle anywhere to begin.</p><small>V1 spatial · V2 linear view · V3 spherical harmonics</small></div>
+  <section id="loading-notice" aria-label="Loading reconstruction" hidden>
+    <span class="loading-mark" aria-hidden="true">⬡</span>
+    <p class="loading-stage">Loading model</p>
+    <p class="loading-message" aria-hidden="true"></p>
+    <small>Large models may take a moment to prepare on this device.</small>
+  </section>
+  <div id="touch-pad" aria-label="Touch movement"><button data-key="KeyW" aria-label="Forward">↑</button><div><button data-key="KeyA" aria-label="Left">←</button><button data-key="KeyS" aria-label="Back">↓</button><button data-key="KeyD" aria-label="Right">→</button></div><div><button data-key="KeyQ" aria-label="Down">−</button><button data-key="KeyE" aria-label="Up">+</button></div></div>
+  <footer><span id="status" role="status">Ready</span><span id="stats">No model loaded</span></footer>
+  <p id="navigation-hint">Click scene to focus · WASD move · Drag to look · Q/E up/down · Shift faster · ? help</p>
+  <dialog id="help-dialog"><h2>Explore a Hexels scene</h2><p>Click the scene to focus the camera after using any control or training button.</p><dl><dt>W / S · A / D</dt><dd>Move forward / backward · left / right.</dd><dt>Q / E · Space</dt><dd>Move down / up · Space also moves up.</dd><dt>Mouse drag · F · Esc</dt><dd>Look around · capture mouse for game-style look · release mouse.</dd><dt>Shift · Mouse wheel</dt><dd>Move faster · adjust fly speed (or dolly in Orbit mode).</dd><dt>O · R</dt><dd>Switch fly/orbit · reset to the first saved view.</dd></dl><p>Compare two modes: Display chooses the left side, Right side chooses the other. Drag the vertical divider. Changing the divider does not move the camera.</p><p>Live training: Start begins optimization; Pause/Resume controls it between iterations. A paused demo expires after two hours. Recording samples training iterations automatically, not mouse movements.</p><form method="dialog"><button>Close help</button></form></dialog>
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>

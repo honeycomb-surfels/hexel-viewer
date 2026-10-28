@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "repository": "hexel-viewer",
+  "files": {
+    ".gitignore": "ac3ca6b42578d5f3b9edcf2711835287025f686ee431b2025c69ce24c3053161",
+    "LICENSE": "ed0a91c26c714d465d581eaa9e90cf127a65ce7d9c6279e2aaeec467c163c3f1",
+    "README.md": "fb3f109539b6a9b97d4f346d6b525c961d0ee8883d277b83ab98c78304c04ecd",
+    "hexel_viewer/__init__.py": "7e6e830a7d2e5bf92e5f501a8ad85522c1e47941625b89f2087d24de839d46a1",
+    "hexel_viewer/live_viewer.py": "474f066be5cfa3e20eccff70673209995dfa53e274f464ef4c9ad4eddb53d84f",
+    "hexel_viewer/training_controls.mjs": "4e86d771ff9dec8d0200b6b2a4a7bf551c6e66b0203286931ae5d4f48641fb31",
+    "hexel_viewer/training_demo.py": "c0783a1463c404e72d34a8099adc102374e28b44a4abb9dca90bd944dab777ec",
+    "hexel_viewer/validation.py": "e66014ef7ea2cfdc5f79da12dbb4c033e619ee5ad7f3f1f3c4ddaa6a45479f22",
+    "hexel_viewer/viewer.py": "2ffee842fa0d85fe7f4284430e8ca11104cfe95787c08d7380f81636b9e1d384",
+    "hexel_viewer/viewer_model.py": "5642429956fb38e8b5205357598b3a215c98859842d275b45b8964df132f96f9",
+    "hexel_viewer/web/app.mjs": "4ac8873f9b711758ddea3abb8e9689afdbba7f10bb9318cb4e7588408d723b1c",
+    "hexel_viewer/web/controls.mjs": "7efa017d5aa5fcaaecaac907c17e19fe207445e73bf21e017a959f7c69d86849",
+    "hexel_viewer/web/core.mjs": "28e253268421c7839c1f3b0126441c7afcb0e161e93447f4b48d2a5c3f2ef1ec",
+    "hexel_viewer/web/index.html": "583b0d328f4b843dfe5f6bda7901aa7baddfdfec273ac49d6818b97cc29030d0",
+    "hexel_viewer/web/loading.mjs": "82b31546c0e4364adc7d8a5518713b11aa75bcc50d943f69a84a997e678182c8",
+    "hexel_viewer/web/renderer.mjs": "bb1dfd541de89a6f7f983c3e716479d3627959c61c8b499f30e6ebecf707bc8e",
+    "hexel_viewer/web/shaders.mjs": "d991cf2c0b663ec60d2edf801f4192b6d1cc8ab14c554f5e6b11beda12a344e2",
+    "hexel_viewer/web/sort-worker.mjs": "92188f68efea8fc2abf824724b764e9fa1dfffbb3e4ce3a25d12ad80e35a5cf3",
+    "hexel_viewer/web/style.css": "e4d3b6f7ed6ff23292438c09441afab15dce493d32fe166367dfb24f3a75b9f2",
+    "hexel_viewer/web/telemetry.mjs": "37b8321acb0d1a5fac88143ba55858b2fba28489c694f1284f91e0d2f1091343",
+    "pyproject.toml": "6c3fd264f79a9098c8f39ec162573108308e81f1a8f41b6d2fde29e4a411ab62",
+    "scripts/validate_viewers.py": "13eba32d72f60ac72d75fbebbe095693e13126b3e81b0910ab5f3d235d7f5602",
+    "tests/test_hexels_viewer.py": "fa5c556b8d0c2aec4821bfe4925ae40fdcae88ed16ebd1356869aec200581f4a",
+    "tests/test_training_demo.py": "071366016f7a66d86f410756dab4c0246d5ce476df41a7e5a1edb51bef67701d",
+    "tests/test_viewer_comparison.py": "dee068d62b48a244ffd4d1277de7e33785ff487163b43daedc9de4ce743a65cc",
+    "tests/test_viewer_loading.py": "3d0852109c1feb91d7061bebb27d0185cc2606998ec0e3f2c16a97dd92c59957",
+    "tests/test_viewer_web.mjs": "d1d8801b56a2aedca4d5776ff020aee62f3e0dce3673ea555e3f71c34faf85a9"
+  }
+}
